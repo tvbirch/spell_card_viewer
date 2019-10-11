@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1
+	"url": "http://localhost/1",
+    "sourceBook": "Book 1",
+    "edition": "Supplementals",
+    "name": "Test 1",
+    "type": " Type1",
+    "level": "Class 6",
+    "components": "V, S",
+    "materialComponent": {},
+    "focus": {},
+    "castingTime": "10 minutes",
+    "range": " Touch",
+    "targetType": "Target",
+    "targetDescription": " Willing living creature touched",
+    "duration": " Permanent until triggered; then 1 round/level",
+    "xpCost": "500 XP.",
+    "savingThrow": " Will negates (harmless)",
+    "spellResistance": " Yes (harmless)",
+    "description": "TLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "tags": [
+      "Class",
+      "Tag 1",
+      "Tag 2"
+    ],
+    "containsTable": false,
+    "descriptors": [
+      "Descriptor 1"
+    ],
+    "levelByClass": {
+      "Class": "6"
+    }
+  }
+]
