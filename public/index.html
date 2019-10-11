@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="easily make a list of your shopping items and track your shopping expense">
+  <meta name="description" content="Spell card management">
   <title>Shopping List</title>
 
   <link rel="stylesheet" href="/resources/mdl/material-icons.css">
@@ -22,13 +22,13 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title">Shopping List</span>
+        <span class="mdl-layout-title">Spell Cards</span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           <a class="mdl-navigation__link" href="index.html">Home</a>
-          <a class="mdl-navigation__link" href="history.html">History</a>
+          <a class="mdl-navigation__link" href="history.html">Search</a>
           <a onclick="pageEvents.showLogin()" style="cursor: pointer" class="mdl-navigation__link login">Login</a>
           <a onclick="pageEvents.showRegister()" style="cursor: pointer" class="mdl-navigation__link register">Register</a>
           <a onclick="pageEvents.signout()" style="cursor: pointer" class="mdl-navigation__link logout">Logout</a>
@@ -36,10 +36,10 @@
       </div>
     </header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Shopping List</span>
+      <span class="mdl-layout-title">Spell Cards</span>
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="index.html">Home</a>
-        <a class="mdl-navigation__link" href="history.html">History</a>
+        <a class="mdl-navigation__link" href="searcher.html">Search</a>
         <a onclick="pageEvents.showLogin()" style="cursor: pointer" class="mdl-navigation__link login">Login</a>
         <a onclick="pageEvents.showRegister()" style="cursor: pointer" class="mdl-navigation__link register">Register</a>
         <a onclick="pageEvents.signout()" style="cursor: pointer" class="mdl-navigation__link logout">Logout</a>
@@ -48,74 +48,7 @@
     <main class="mdl-layout__content">
       <div class="page-content">
         <!-- Your content goes here -->
-        <div class="center">
-          <h2>List</h2>
-        </div>
-
-        <div>
-          <div class="mdl-grid center-items">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="new-item-name">
-              <label class="mdl-textfield__label" for="new-item-name">Item Name</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="number" id="new-item-cost">
-              <label class="mdl-textfield__label" for="new-item-cost">Item Cost</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="number" id="new-item-quantity">
-              <label class="mdl-textfield__label" for="new-item-quantity">Quantity</label>
-            </div>
-          </div>
-
-          <div class="mdl-grid center-items">
-            <button id="add-item" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-              Add Item
-            </button>
-          </div>
-        </div>
-
-        <div class="mdl-grid center-items">
-          <table id="item-table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric">Item Name</th>
-                <th class="mdl-data-table__cell--non-numeric">Cost</th>
-                <th class="mdl-data-table__cell--non-numeric">Quantity</th>
-                <th class="mdl-data-table__cell">Sub-total</th>
-                <th class="mdl-data-table__cell--non-numeric">
-                  <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">delete</i>
-                  </button>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-          </table>
-        </div>
-
-        <div class="mdl-grid center-items">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="number" id="total-cost" readonly value="0">
-            <label class="mdl-textfield__label" for="cost">Total Item Cost</label>
-          </div>
-        </div>
-
-        <div class="mdl-grid center-items">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="pageEvents.saveList()">
-            Save List
-          </button>
-        </div>
-
-        <div class="mdl-grid center-items">
-          <div id="toast" class="mdl-js-snackbar mdl-snackbar">
-            <div class="mdl-snackbar__text"></div>
-            <button class="mdl-snackbar__action" type="button"></button>
-          </div>
-        </div>
-
+       
       </div>
     </main>
   </div>

@@ -6,6 +6,14 @@ System.register(["shared.js"], function (_export, _context) {
   var shared;
 
 
+  function addSpell(id) {
+    console.log("addSpell" + id);
+  }
+
+  function searchForSpells() {
+    console.log("searchForSpells");
+  }
+
   function saveNewitem() {
     var name = document.getElementById("new-item-name").value;
     var cost = document.getElementById("new-item-cost").value;
@@ -47,7 +55,7 @@ System.register(["shared.js"], function (_export, _context) {
     hoodie.store.withIdPrefix("item").on("add", addItemToPage);
     hoodie.store.withIdPrefix("item").on("remove", deleteRow);
 
-    document.getElementById("add-item").addEventListener("click", saveNewitem);
+    document.getElementById("search-spell").addEventListener("click", searchForSpells);
 
     //retrieve items on the current list and display on the page
     hoodie.store.withIdPrefix("item").findAll().then(function (items) {
@@ -78,7 +86,7 @@ System.register(["shared.js"], function (_export, _context) {
     });
 
     window.pageEvents = {
-      deleteItem: deleteItem,
+      addSpell: addSpell,
       closeLogin: shared.closeLoginDialog,
       showLogin: shared.showLoginDialog,
       closeRegister: shared.closeRegisterDialog,

@@ -1,5 +1,13 @@
 import * as shared from "shared.js";
 
+function addSpell(id) {
+  console.log("addSpell"+id);
+}
+
+function searchForSpells() {
+  console.log("searchForSpells");
+}
+
 function saveNewitem() {
   let name = document.getElementById("new-item-name").value;
   let cost = document.getElementById("new-item-cost").value;
@@ -49,7 +57,7 @@ function init() {
   hoodie.store.withIdPrefix("item").on("add", addItemToPage);
   hoodie.store.withIdPrefix("item").on("remove", deleteRow);
 
-  document.getElementById("add-item").addEventListener("click", saveNewitem);
+  document.getElementById("search-spell").addEventListener("click", searchForSpells);
 
   //retrieve items on the current list and display on the page
   hoodie.store
@@ -62,7 +70,7 @@ function init() {
     });
 
     window.pageEvents = {
-      deleteItem: deleteItem,
+      addSpell: addSpell,
       closeLogin: shared.closeLoginDialog,
       showLogin: shared.showLoginDialog,
       closeRegister: shared.closeRegisterDialog,
