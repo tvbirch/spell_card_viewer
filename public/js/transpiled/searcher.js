@@ -7,13 +7,15 @@ System.register(["shared.js"], function (_export, _context) {
 
 
   function addSpellToBook(id) {
-    console.log("addSpellToBook" + id);
+    hoodie.store.withIdPrefix("spell").find(id).then(function (spell) {
+      hoodie.store.withIdPrefix("spellBook").add(spell.id);
+    });
   }
 
   function searchForSpells() {
-    var name = document.getElementById("search-spell-name").value;
-    var casterClass = document.getElementById("search-spell-class").value;
-    var level = document.getElementById("search-spell-level").value;
+    resetSpellPage();
+    var name = document.getElementById("search-spell-name").value.toLowerCase();
+    var casterClass = document.getElementById("search-spell-class").value.toLowerCase();
 
     hoodie.store.withIdPrefix("spell").findAll().then(function (spells) {
       var _iteratorNormalCompletion = true;
@@ -24,7 +26,20 @@ System.register(["shared.js"], function (_export, _context) {
         for (var _iterator = spells[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var spell = _step.value;
 
-
+          if (name !== "" && !spell.name.toLowerCase().includes(name)) {
+            continue;
+          } else if (casterClass !== "") {
+            var classMatch = false;
+            for (var prop in spell.levelByClass) {
+              if (Object.prototype.hasOwnProperty.call(spell.levelByClass, prop)) {
+                if (prop.toLowerCase().includes(casterClass)) classMatch = true;
+                break;
+              }
+            }
+            if (!classMatch) {
+              continue;
+            }
+          }
           addSpellToPage(spell);
         }
       } catch (err) {
@@ -146,6 +161,10 @@ System.register(["shared.js"], function (_export, _context) {
     template = template.replace("{{row-id}}", spell._id);
     template = template.replace("{{item-id}}", spell._id);
     document.getElementById("spell-table").tBodies[0].innerHTML += template;
+  }
+
+  function resetSpellPage() {
+    document.getElementById("spell-table").tBodies[0].innerHTML = "";
   }
   return {
     setters: [function (_sharedJs) {

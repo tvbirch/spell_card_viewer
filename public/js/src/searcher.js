@@ -1,20 +1,36 @@
 import * as shared from "shared.js";
 
 function addSpellToBook(id) {
-  console.log("addSpellToBook"+id);
+  hoodie.store.withIdPrefix("spell").find(id).then(function(spell) {
+    hoodie.store.withIdPrefix("spellBook").add(spell.id);
+  });  
 }
 
 function searchForSpells() {
-  let name = document.getElementById("search-spell-name").value;
-  let casterClass = document.getElementById("search-spell-class").value;
-  let level = document.getElementById("search-spell-level").value;
+  resetSpellPage();
+  let name = document.getElementById("search-spell-name").value.toLowerCase();
+  let casterClass = document.getElementById("search-spell-class").value.toLowerCase();
   
   hoodie.store
   .withIdPrefix("spell")
   .findAll()
   .then(function(spells) {
     for (let spell of spells) {
-
+      if (name !== "" && !spell.name.toLowerCase().includes(name)) {
+        continue;
+      } else if (casterClass !== "") {
+        let classMatch = false;
+        for (var prop in spell.levelByClass) {
+          if (Object.prototype.hasOwnProperty.call(spell.levelByClass, prop)) {
+              if(prop.toLowerCase().includes(casterClass))
+              classMatch = true;
+              break;
+          }
+        }
+        if (!classMatch) {
+          continue;
+        }
+      }
       addSpellToPage(spell);
     }
   });
@@ -81,4 +97,8 @@ function addSpellToPage(spell) {
   template = template.replace("{{row-id}}", spell._id);
   template = template.replace("{{item-id}}", spell._id);
   document.getElementById("spell-table").tBodies[0].innerHTML += template;
+}
+
+function resetSpellPage() {
+  document.getElementById("spell-table").tBodies[0].innerHTML = "";
 }

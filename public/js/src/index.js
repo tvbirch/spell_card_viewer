@@ -1,7 +1,7 @@
 import * as shared from "shared.js";
 
-function addSpell(id) {
-  console.log("addSpell"+id);
+function addSpell() {
+  console.log("addSpell");
 }
 
 function searchForSpells() {
