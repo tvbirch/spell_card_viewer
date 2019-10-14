@@ -54,13 +54,13 @@ function deleteItem(itemId) {
 
 function init() {
   shared.updateDOMWithLoginStatus();
-  hoodie.store.withIdPrefix("item").on("add", addItemToPage);
-  hoodie.store.withIdPrefix("item").on("remove", deleteRow);
+  //hoodie.store.withIdPrefix("item").on("add", addItemToPage);
+  //hoodie.store.withIdPrefix("item").on("remove", deleteRow);
 
-  document.getElementById("search-spell").addEventListener("click", searchForSpells);
+  //document.getElementById("search-spell").addEventListener("click", searchForSpells);
 
   //retrieve items on the current list and display on the page
-  hoodie.store
+  /*hoodie.store
     .withIdPrefix("item")
     .findAll()
     .then(function(items) {
@@ -68,9 +68,9 @@ function init() {
         addItemToPage(item);
       }
     });
-
+*/
     window.pageEvents = {
-      addSpell: addSpell,
+  //    addSpell: addSpell,
       closeLogin: shared.closeLoginDialog,
       showLogin: shared.showLoginDialog,
       closeRegister: shared.closeRegisterDialog,
