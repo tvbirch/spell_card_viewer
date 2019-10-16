@@ -31,6 +31,10 @@ register {
   cursor: pointer;
 }
 
+.spellDeactivated {
+  background-color: #757575;
+}
+
 .card-ruler {
   width: 100%;
   height: 1.0mm;

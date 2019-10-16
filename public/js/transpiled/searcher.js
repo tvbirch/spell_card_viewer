@@ -6,9 +6,15 @@ System.register(["shared.js"], function (_export, _context) {
   var shared;
 
 
+  function showSnackBarMessage(msg) {
+    var snackbarContainer = document.querySelector("#toast");
+    snackbarContainer.MaterialSnackbar.showSnackbar({
+      message: msg
+    });
+  }
+
   function addSpellToBook(id) {
     hoodie.store.withIdPrefix("spell_").find(id).then(function (spell) {
-      console.log(spell);
       hoodie.store.withIdPrefix("spellbook_").findAll().then(function (storedSpells) {
         var found = false;
         var _iteratorNormalCompletion = true;
@@ -40,10 +46,10 @@ System.register(["shared.js"], function (_export, _context) {
         }
 
         if (found === false) {
-          console.log("adding spell with id " + spell.id);
           hoodie.store.withIdPrefix("spellbook_").add({ id: spell.id });
+          showSnackBarMessage(spell.name + " added to spellbook");
         } else {
-          console.log("spell with id " + spell.id + " already exist");
+          showSnackBarMessage(spell.name + " is already in spellbook");
         }
         console.log("Spells updated");
       });
@@ -180,18 +186,11 @@ System.register(["shared.js"], function (_export, _context) {
 
   function init() {
 
-    shared.updateDOMWithLoginStatus();
+    //shared.updateDOMWithLoginStatus();
     document.getElementById("search-spell").addEventListener("click", searchForSpells);
 
     window.pageEvents = {
-      addSpellToBook: addSpellToBook,
-      closeLogin: shared.closeLoginDialog,
-      showLogin: shared.showLoginDialog,
-      closeRegister: shared.closeRegisterDialog,
-      showRegister: shared.showRegisterDialog,
-      login: shared.login,
-      register: shared.register,
-      signout: shared.signOut
+      addSpellToBook: addSpellToBook
     };
 
     hoodie.store.withIdPrefix("spellurl_").findAll().then(function (spellUrl) {

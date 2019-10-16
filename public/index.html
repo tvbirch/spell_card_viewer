@@ -28,123 +28,112 @@
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           <a class="mdl-navigation__link" href="index.html">Home</a>
+          <a class="mdl-navigation__link" href="book.html">Spellbook</a>
           <a class="mdl-navigation__link" href="history.html">Search</a>
-          <a onclick="pageEvents.showLogin()" style="cursor: pointer" class="mdl-navigation__link login">Login</a>
-          <a onclick="pageEvents.showRegister()" style="cursor: pointer" class="mdl-navigation__link register">Register</a>
-          <a onclick="pageEvents.signout()" style="cursor: pointer" class="mdl-navigation__link logout">Logout</a>
         </nav>
       </div>
+      <!-- Tabs -->
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+         <a href="#scroll-tab-0" class="mdl-layout__tab is-active">Lvl 0</a>
+         <a href="#scroll-tab-1" class="mdl-layout__tab">Lvl 1</a>
+         <a href="#scroll-tab-2" class="mdl-layout__tab">Lvl 2</a>
+         <a href="#scroll-tab-3" class="mdl-layout__tab">Lvl 3</a>
+         <a href="#scroll-tab-4" class="mdl-layout__tab">Lvl 4</a>
+         <a href="#scroll-tab-5" class="mdl-layout__tab">Lvl 5</a>
+         <a href="#scroll-tab-6" class="mdl-layout__tab">Lvl 6</a>
+         <a href="#scroll-tab-7" class="mdl-layout__tab">Lvl 7</a>
+         <a href="#scroll-tab-8" class="mdl-layout__tab">Lvl 8</a>
+         <a href="#scroll-tab-9" class="mdl-layout__tab">Lvl 9</a>
+         <a href="#scroll-tab-0" class="mdl-layout__tab">-----</a>
+       </div>
+       
+
     </header>
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Spell Cards</span>
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="index.html">Home</a>
+        <a class="mdl-navigation__link" href="book.html">Spellbook</a>
         <a class="mdl-navigation__link" href="searcher.html">Search</a>
-        <a onclick="pageEvents.showLogin()" style="cursor: pointer" class="mdl-navigation__link login">Login</a>
-        <a onclick="pageEvents.showRegister()" style="cursor: pointer" class="mdl-navigation__link register">Register</a>
-        <a onclick="pageEvents.signout()" style="cursor: pointer" class="mdl-navigation__link logout">Logout</a>
       </nav>
     </div>
     <main class="mdl-layout__content">
-      <div class="page-content">
-        <!-- Your content goes here -->
-        <div>
-            <div class="mdl-layout mdl-js-layout">
-                <div id="spells" class ="mdl-layout__content">    
-                  
-                </div>
-              </div>
-        </div>
-      </div>
+      <section class="mdl-layout__tab-panel is-active" id="scroll-tab-0">       
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-1">
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-2">
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-4">
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-5">
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-6">
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-7">
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-8">
+      </section>
+      <section class="mdl-layout__tab-panel" id="scroll-tab-9">
+      </section>
     </main>
   </div>
 
-  <dialog id="login-dialog" class="mdl-dialog">
-    <h4 class="mdl-dialog__title">Login</h4>
-    <div class="mdl-dialog__content">
-      <div class="mdl-grid center-items">
-        <!-- Simple Textfield -->
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="login-username">
-          <label class="mdl-textfield__label" for="login-username">Username</label>
-        </div>
-      </div>
-      <div class="mdl-grid center-items">
-        <!-- Simple Textfield -->
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="password" id="login-password">
-          <label class="mdl-textfield__label" for="login-password">Password</label>
-        </div>
-      </div>
-      <div class="mdl-grid center-items">
-        <!-- Simple Textfield -->
-        <div class="mdl-textfield mdl-js-textfield">
-          <span id="login-error"></span>
-        </div>
-      </div>
-    </div>
-    <div class="mdl-dialog__actions">
-      <button onclick="pageEvents.closeLogin()" type="button" class="mdl-button close">Cancel</button>
-      <button onclick="pageEvents.login()" type="button" class="mdl-button">Login</button>
-    </div>
-  </dialog>
 
-  <dialog id="register-dialog" class="mdl-dialog">
-    <h4 class="mdl-dialog__title">Login</h4>
-    <div class="mdl-dialog__content">
-      <div class="mdl-grid center-items">
-        <!-- Simple Textfield -->
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="register-username">
-          <label class="mdl-textfield__label" for="register-username">Username</label>
-        </div>
+<script id="spell-slots-by-level" type="text/template">
+  <div class="table-content">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Level {{level}}</h2>
       </div>
-      <div class="mdl-grid center-items">
-        <!-- Simple Textfield -->
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="password" id="register-password">
-          <label class="mdl-textfield__label" for="register-password">Password</label>
-        </div>
-      </div>
-      <div class="mdl-grid center-items">
-        <!-- Simple Textfield -->
-        <div class="mdl-textfield mdl-js-textfield">
-          <span id="register-error"></span>
-        </div>
-      </div>
-    </div>
-    <div class="mdl-dialog__actions">
-      <button onclick="pageEvents.closeRegister()" type="button" class="mdl-button close">Cancel</button>
-      <button onclick="pageEvents.register()" type="button" class="mdl-button">Register</button>
-    </div>
-  </dialog>
-
-<script id="spell-col-header" type="text/template">
-  <div class = "mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">{{text}}</div>
-</script>
-<script id="spell-col-normal" type="text/template">
-  <div class = "mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--4-col-phone"><b>{{title}}: </b>{{text}}</div>
-</script>
-<script id="spell-col-body" type="text/template">
-  <div class = "mdl-cell mdl-cell--12-col">{{text}}</div>
-</script>
-<script id="spell-col-body-with-title" type="text/template">
-  <div class = "mdl-cell mdl-cell--12-col"><b>{{title}}: </b>{{text}}</div>
-</script>
-<script id="spell-card-delete" type="text/template">
-  <div class="mdl-card__menu">
-      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="pageEvents.deleteSpell('{{spell-id}}')">
-        <i class="material-icons">delete</i>
+    <div class="mdl-card__menu">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="pageEvents.addSpellSlot('{{add-spell-slot-id}}')">
+        <i class="material-icons">add</i>
       </button>
     </div>
+    <div class="mdl-card__menu" style="margin-right:35px;">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"  onclick="pageEvents.removeSpellSlot('{{remove-spell-slot-id}}')">
+        <i class="material-icons">remove</i>
+      </button>
+    </div>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%;">
+      <thead>
+        <tr>
+          <th style="padding-left: 10px; padding-right: 5px;" class="mdl-data-table__cell--non-numeric row-compact">Use</th>
+          <th style="padding-left: 5px; padding-right: 5px;" class="mdl-data-table__cell--non-numeric row-compact">Name</th>
+          <th style="padding-left: 5px; padding-right: 5px;">Change</th>
+        </tr>
+      </thead>
+      <tbody id='{{table-id}}'>
+
+      </tbody>
+    </table>
+    <div class="spells-content">
+
+    </div>
+  </div>
 </script>
-<script id="spell-card-use" type="text/template">
- <div class="mdl-card__actions mdl-card--border">
-  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-    Use
-  </a>
-</div>
+<script id="spell-slots-by-level-row" type="text/template">
+  <tr id='{{table-row-id}}'>
+    <td style="padding-left: 5px; padding-right: 5px; text-align: left;" >
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="pageEvents.useSpellSlot('{{table-row-use-id}}')">
+        <i class="material-icons">play_arrow</i>
+      </button>
+    </td>
+    <td style="padding-left: 5px; padding-right: 5px;" class="mdl-data-table__cell--non-numeric">
+      <div> 
+          {{name}}
+      </div>              
+    </td>
+    <td style="padding-left: 5px; padding-right: 5px;">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <i class="material-icons">cached</i>
+      </button>
+    </td>
+  </tr>
 </script>
+
 <script src="/hoodie/client.js"></script>
 <script src="resources/system.js"></script>
 <script>

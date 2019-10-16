@@ -1,8 +1,14 @@
 import * as shared from "shared.js";
 
+function showSnackBarMessage(msg) {
+  let snackbarContainer = document.querySelector("#toast");
+      snackbarContainer.MaterialSnackbar.showSnackbar({
+        message: msg
+      });
+}
+
 function addSpellToBook(id) {
   hoodie.store.withIdPrefix("spell_").find(id).then(function (spell) {
-    console.log(spell);
     hoodie.store.withIdPrefix("spellbook_")
     .findAll()
     .then(function(storedSpells) {
@@ -15,10 +21,10 @@ function addSpellToBook(id) {
       }
 
       if (found === false) {
-        console.log("adding spell with id " + spell.id)
         hoodie.store.withIdPrefix("spellbook_").add({ id: spell.id });
+        showSnackBarMessage(spell.name + " added to spellbook");
       } else {
-        console.log("spell with id " + spell.id + " already exist")
+        showSnackBarMessage(spell.name + " is already in spellbook");
       }
       console.log("Spells updated");
     });
@@ -95,18 +101,11 @@ async function loadSpells(url) {
 
 function init() {
 
-  shared.updateDOMWithLoginStatus();
+  //shared.updateDOMWithLoginStatus();
   document.getElementById("search-spell").addEventListener("click", searchForSpells);
 
   window.pageEvents = {
-    addSpellToBook: addSpellToBook,
-    closeLogin: shared.closeLoginDialog,
-    showLogin: shared.showLoginDialog,
-    closeRegister: shared.closeRegisterDialog,
-    showRegister: shared.showRegisterDialog,
-    login: shared.login,
-    register: shared.register,
-    signout: shared.signOut
+    addSpellToBook: addSpellToBook
   };
 
   hoodie.store.withIdPrefix("spellurl_").findAll().then(function (spellUrl) {
