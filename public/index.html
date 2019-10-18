@@ -57,7 +57,7 @@
         <a class="mdl-navigation__link" href="searcher.html">Search</a>
       </nav>
     </div>
-    <main class="mdl-layout__content">
+    <main id="spelltabs" class="mdl-layout__content">
       <section class="mdl-layout__tab-panel is-active" id="scroll-tab-0">       
       </section>
       <section class="mdl-layout__tab-panel" id="scroll-tab-1">
@@ -79,6 +79,56 @@
       <section class="mdl-layout__tab-panel" id="scroll-tab-9">
       </section>
     </main>
+
+
+
+    <div id="spellsearcher" style="display: none;">
+      <div class="mdl-grid center-items">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="search-spell-name">
+          <label class="mdl-textfield__label" for="search-spell-name">Spell name</label>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="search-spell-class">
+          <label class="mdl-textfield__label" for="search-spell-class">Class</label>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="search-spell-level">
+          <label class="mdl-textfield__label" for="search-spell-level">Level</label>
+        </div>
+      </div>
+
+      <div class="mdl-grid center-items">
+          <button id="search-spell" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+              Search
+            </button>  
+        <button id="search-spell-cancel" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            Cancel
+          </button>
+        </div>
+
+      <div class="mdl-grid center-items">
+        <table id="spell-table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%;">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Spell name</th>      
+              <th class="mdl-data-table__cell--non-numeric">
+                <button class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">add</i>
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="spell-content" style="display: none;">
+
+    </div>    
   </div>
 
 
@@ -86,6 +136,9 @@
   <div class="table-content">
     <div class="mdl-card__title">
         <h2 class="mdl-card__title-text">Level {{level}}</h2>
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="pageEvents.resetSpellSlot()">
+            <i class="material-icons">refresh</i>
+          </button>
       </div>
     <div class="mdl-card__menu">
       <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="pageEvents.addSpellSlot('{{add-spell-slot-id}}')">
@@ -109,31 +162,56 @@
 
       </tbody>
     </table>
-    <div class="spells-content">
-
-    </div>
   </div>
 </script>
 <script id="spell-slots-by-level-row" type="text/template">
-  <tr id='{{table-row-id}}'>
+  <tr id='{{table-row-id}}' class="{{table-row-is-used-class}}">
     <td style="padding-left: 5px; padding-right: 5px; text-align: left;" >
       <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="pageEvents.useSpellSlot('{{table-row-use-id}}')">
         <i class="material-icons">play_arrow</i>
       </button>
     </td>
-    <td style="padding-left: 5px; padding-right: 5px;" class="mdl-data-table__cell--non-numeric">
+    <td style="padding-left: 5px; padding-right: 5px;" class="mdl-data-table__cell--non-numeric" onclick="pageEvents.showSpell('{{table-row-show-spell-id}}', 'spelltabs')">
       <div> 
           {{name}}
       </div>              
     </td>
     <td style="padding-left: 5px; padding-right: 5px;">
-      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="pageEvents.changeSpellSlot('{{table-row-change-id}}')">
         <i class="material-icons">cached</i>
       </button>
     </td>
   </tr>
 </script>
-
+<script id="spell-search-row" type="text/template">
+  <tr id='{{row-id}}'>      
+    <td class="mdl-data-table__cell--non-numeric" onclick="pageEvents.showSpell('{{show-spell-id}}', 'spellsearcher')">{{name}}</td>
+    <td class="mdl-data-table__cell--non-numeric">
+          <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" onclick="pageEvents.setSpellInSlot('{{level}}','{{row}}','{{item-id}}')">
+          <i class="material-icons">add</i>
+          </button>
+    </td>
+  </tr>
+</script>
+<script id="spell-col-header" type="text/template">
+  <div class = "mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">{{text}}</div>
+</script>
+<script id="spell-col-normal" type="text/template">
+  <div class = "mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--4-col-phone"><b>{{title}}: </b>{{text}}</div>
+</script>
+<script id="spell-col-body" type="text/template">
+  <div class = "mdl-cell mdl-cell--12-col">{{text}}</div>
+</script>
+<script id="spell-col-body-with-title" type="text/template">
+  <div class = "mdl-cell mdl-cell--12-col"><b>{{title}}: </b>{{text}}</div>
+</script>
+<script id="spell-card-back" type="text/template">
+  <div class="mdl-card__menu">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="pageEvents.show('{{target}}')">
+        <i class="material-icons">chevron_left</i>
+      </button>
+    </div>
+</script>
 <script src="/hoodie/client.js"></script>
 <script src="resources/system.js"></script>
 <script>
@@ -141,5 +219,4 @@
   System.import("index.js");
 </script>
 </body>
-
 </html>

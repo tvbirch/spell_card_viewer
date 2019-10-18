@@ -34,41 +34,7 @@ function addSpellToBook(id) {
   
 }
 
-function searchForSpells() {
-  resetSpellPage();
-  let name = document.getElementById("search-spell-name").value.toLowerCase();
-  let casterClass = document.getElementById("search-spell-class").value.toLowerCase();
-  
-  hoodie.store
-  .withIdPrefix("spell_")
-  .findAll()
-  .then(function(spells) {
-    let currentSpellsAdded = 0;
-    for (let spell of spells) {
-      if (currentSpellsAdded > 10) {
-        break;
-      }
-      if (name !== "" && !spell.name.toLowerCase().includes(name)) {
-        continue;
-      } else if (casterClass !== "") {
-        let classMatch = false;
-        for (var prop in spell.levelByClass) {
-          if (Object.prototype.hasOwnProperty.call(spell.levelByClass, prop)) {
-            if(prop.toLowerCase().includes(casterClass)) {
-              classMatch = true;
-              break;
-            }              
-          }
-        }
-        if (!classMatch) {
-          continue;
-        }
-      }
-      addSpellToPage(spell);
-      currentSpellsAdded++;
-    }
-  });
-}
+
 
 async function loadSpells(url) {
   //let url = 'https://raw.githubusercontent.com/tvbirch/spell_card_viewer/master/public/resources/spells.json';
@@ -125,6 +91,43 @@ init();
 function getIndexTemplate() {
   let template = document.querySelector("#item-row").innerHTML;
   return template;
+}
+
+
+function searchForSpells() {
+  resetSpellPage();
+  let name = document.getElementById("search-spell-name").value.toLowerCase();
+  let casterClass = document.getElementById("search-spell-class").value.toLowerCase();
+  
+  hoodie.store
+  .withIdPrefix("spell_")
+  .findAll()
+  .then(function(spells) {
+    let currentSpellsAdded = 0;
+    for (let spell of spells) {
+      if (currentSpellsAdded > 10) {
+        break;
+      }
+      if (name !== "" && !spell.name.toLowerCase().includes(name)) {
+        continue;
+      } else if (casterClass !== "") {
+        let classMatch = false;
+        for (var prop in spell.levelByClass) {
+          if (Object.prototype.hasOwnProperty.call(spell.levelByClass, prop)) {
+            if(prop.toLowerCase().includes(casterClass)) {
+              classMatch = true;
+              break;
+            }              
+          }
+        }
+        if (!classMatch) {
+          continue;
+        }
+      }
+      addSpellToPage(spell);
+      currentSpellsAdded++;
+    }
+  });
 }
 
 function addSpellToPage(spell) {
